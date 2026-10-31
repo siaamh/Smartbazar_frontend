@@ -10,7 +10,7 @@ const DELIVERY_FEE = 60;
 export default function CartPage() {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
   const user = useAuthStore((s) => s.user);
-  const isCustomer = isAuthenticated && user?.role === 'CUSTOMER';
+  const isCustomer = isAuthenticated && user?.role === 'customer';
 
   const { data: cartData, isLoading, error } = useCart();
   const updateItem = useUpdateCartItem();

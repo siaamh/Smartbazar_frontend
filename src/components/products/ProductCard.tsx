@@ -22,7 +22,7 @@ export function ProductCard({ product }: ProductCardProps) {
   const user = useAuthStore((s) => s.user);
   const addToCart = useAddToCart();
 
-  const isCustomer = isAuthenticated && user?.role === 'CUSTOMER';
+  const isCustomer = isAuthenticated && user?.role === 'customer';
   const outOfStock = product.stock === 0;
   const lowStock = product.stock > 0 && product.stock < 5;
 

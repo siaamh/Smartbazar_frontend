@@ -19,7 +19,7 @@ export function useCart() {
       }
       return response;
     },
-    enabled: isAuthenticated && user?.role === 'CUSTOMER',
+    enabled: isAuthenticated && user?.role === 'customer',
     staleTime: 30 * 1000, // 30 seconds
   });
 }

@@ -22,7 +22,7 @@ export default function ProductDetailPage() {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
   const user = useAuthStore((s) => s.user);
   const addToCart = useAddToCart();
-  const isCustomer = isAuthenticated && user?.role === 'CUSTOMER';
+  const isCustomer = isAuthenticated && user?.role === 'customer';
   const wishlisted = product ? isWishlisted(product.id) : false;
 
   // Related products

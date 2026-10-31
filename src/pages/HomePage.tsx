@@ -226,49 +226,50 @@ function OffersSection() {
         </Link>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {(isLoading ? Array.from({ length: 4 }) : (offers || []).slice(0, 4)).map((offer, i) =>
-          isLoading ? (
-            <div key={i} className="animate-pulse bg-[#E7E5E4] rounded-xl h-52" />
-          ) : (
-            <Link
-              key={(offer as any).id}
-              to={`/products/${(offer as any).product_slug}`}
-              className="group bg-white border border-[#E7E5E4] rounded-xl overflow-hidden hover:shadow-md transition-shadow"
-            >
-              <div className="h-28 bg-[#D1FAE5] relative flex items-center justify-center overflow-hidden">
-                {(offer as any).product_image ? (
-                  <img
-                    src={getImageUrl((offer as any).product_image)}
-                    alt={(offer as any).product_name}
-                    className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                ) : (
-                  <div className="text-[#065F46]/20 text-4xl font-bold">
-                    {(offer as any).discount_type === 'percentage'
-                      ? `-${(offer as any).value}%`
-                      : `-৳${(offer as any).value}`}
+        {isLoading
+          ? Array.from({ length: 4 }).map((_, i) => (
+              <div key={i} className="animate-pulse bg-[#E7E5E4] rounded-xl h-52" />
+            ))
+          : (offers || []).slice(0, 4).map((offer) => (
+              <Link
+                key={offer.id}
+                to={`/products/${offer.product_slug}`}
+                className="group bg-white border border-[#E7E5E4] rounded-xl overflow-hidden hover:shadow-md transition-shadow"
+              >
+                <div className="h-28 bg-[#D1FAE5] relative flex items-center justify-center overflow-hidden">
+                  {offer.product_image ? (
+                    <img
+                      src={getImageUrl(offer.product_image)}
+                      alt={offer.product_name}
+                      className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  ) : (
+                    <div className="text-[#065F46]/20 text-4xl font-bold">
+                      {offer.discount_type === 'percentage'
+                        ? `-${offer.value}%`
+                        : `-৳${offer.value}`}
+                    </div>
+                  )}
+                  <div className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+                    {offer.discount_type === 'percentage'
+                      ? `-${offer.value}%`
+                      : `-৳${offer.value}`}
                   </div>
-                )}
-                <div className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
-                  {(offer as any).discount_type === 'percentage'
-                    ? `-${(offer as any).value}%`
-                    : `-৳${(offer as any).value}`}
                 </div>
-              </div>
-              <div className="p-3">
-                <p className="text-xs font-semibold text-[#1C1917] line-clamp-1">{(offer as any).title}</p>
-                <p className="text-xs text-[#78716C] mt-0.5 line-clamp-1">{(offer as any).product_name}</p>
-                <div className="mt-2">
-                  <CountdownTimer
-                    endsAt={(offer as any).ends_at}
-                    remainingSeconds={(offer as any).remaining_seconds}
-                    compact
-                  />
+                <div className="p-3">
+                  <p className="text-xs font-semibold text-[#1C1917] line-clamp-1">{offer.title}</p>
+                  <p className="text-xs text-[#78716C] mt-0.5 line-clamp-1">{offer.product_name}</p>
+                  <div className="mt-2">
+                    <CountdownTimer
+                      endsAt={offer.ends_at}
+                      remainingSeconds={offer.remaining_seconds}
+                      compact
+                    />
+                  </div>
                 </div>
-              </div>
-            </Link>
-          )
-        )}
+              </Link>
+            ))
+        }
       </div>
     </section>
   );

@@ -1,12 +1,14 @@
 // ─── Auth ─────────────────────────────────────────────────────────────────────
 
+export type UserRole = 'admin' | 'staff' | 'customer';
+
 export interface User {
   id: number;
   username: string;
   email: string;
   first_name: string;
   last_name: string;
-  role: 'ADMIN' | 'STAFF' | 'CUSTOMER';
+  role: UserRole;
   date_joined: string;
 }
 

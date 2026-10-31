@@ -50,7 +50,7 @@ export default function OffersPage() {
               <Skeleton key={i} variant="card" className="h-64" />
             ))}
           </div>
-        ) : !activeOffers || activeOffers.length === 0 ? (
+        ) : !activeOffers || !Array.isArray(activeOffers) || activeOffers.length === 0 ? (
           <div className="text-center py-16 bg-white rounded-xl border border-[#E7E5E4]">
             <Tag size={40} className="text-[#E7E5E4] mx-auto mb-3" />
             <p className="text-[#78716C]">No active offers right now. Check back soon!</p>
@@ -122,7 +122,7 @@ export default function OffersPage() {
               <Skeleton key={i} variant="card" className="h-48" />
             ))}
           </div>
-        ) : !upcomingOffers || upcomingOffers.length === 0 ? (
+        ) : !upcomingOffers || !Array.isArray(upcomingOffers) || upcomingOffers.length === 0 ? (
           <div className="text-center py-12 bg-white rounded-xl border border-[#E7E5E4]">
             <CalendarClock size={40} className="text-[#E7E5E4] mx-auto mb-3" />
             <p className="text-[#78716C]">No upcoming offers scheduled.</p>
